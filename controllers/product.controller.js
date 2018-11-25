@@ -5,6 +5,8 @@ exports.test = function(req,res){
     res.send("Greeting from the test controller !");
 };
 
+
+//CREATE
 exports.product_create = function(req,res,next){
     var product = new Product({
         name:req.body.name,
@@ -21,7 +23,7 @@ exports.product_create = function(req,res,next){
     })
 };
 
-
+//SHOW
 exports.product_details = function(req,res){
     Product.findById(req.params.id,function(err,product){
         if(err) return next(err);
@@ -29,7 +31,7 @@ exports.product_details = function(req,res){
     })
 }
 
-
+//UPDATE
 exports.product_update=function(req,res){
     Product.findByIdAndUpdate(req.params.id,{$set:req.body}, function(err,product){
         if(err)
@@ -40,7 +42,7 @@ exports.product_update=function(req,res){
     })
 }
 
-
+//DELETE
 exports.product_delete = function(req,res){
     Product.findByIdAndDelete(req.params.id,function(err,product){
         if(err)
